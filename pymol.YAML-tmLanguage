@@ -16,7 +16,7 @@ patterns:
     begin: (\()
     beginCaptures:
       '1': {name: punctuation.definition.arguments.pymol}
-    end: \)
+    end: (\))
     endCaptures:
       '1': {name: punctuation.definition.arguments.pymol}
     patterns:
@@ -52,5 +52,5 @@ repository:
 
   options:
   - name: variable.language.pymol
-    match: (/*)
+    match: (.*)
 ...
