@@ -1,5 +1,3 @@
-cd ~/fraser_lab/ACR_review/
-
 set normalize_ccp4_maps, off
 bg white
 fetch 1sug, closed, async=0
