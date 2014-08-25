@@ -247,9 +247,9 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n)(\.|\b)</string>
+					<string>(\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n|ele)(\.|\b)</string>
 					<key>name</key>
-					<string>keyword.operator.pymol</string>
+					<string>keyword.operator.selector.pymol</string>
 				</dict>
 				<dict>
 					<key>match</key>
