@@ -15,10 +15,6 @@
 			<string>#comments</string>
 		</dict>
 		<dict>
-			<key>include</key>
-			<string>#filenames</string>
-		</dict>
-		<dict>
 			<key>begin</key>
 			<string>^([ X]*)([a-zA-Z]+)\.([a-zA-Z_]+)(\()?</string>
 			<key>beginCaptures</key>
@@ -94,6 +90,10 @@
 			<string>(\=)</string>
 			<key>name</key>
 			<string>support.function.pymol</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#filenames</string>
 		</dict>
 		<dict>
 			<key>include</key>

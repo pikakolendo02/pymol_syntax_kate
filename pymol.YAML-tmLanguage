@@ -9,7 +9,6 @@ uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
 patterns:
 
 - include: '#comments'
-- include: '#filenames'
 
 - name: meta.cmd.pymol
   begin: ^([ X]*)([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
@@ -37,6 +36,7 @@ patterns:
   name: support.function.pymol
   match: (\=)
 
+- include: '#filenames'
 - include: '#options'
 - include: '#numbers'
 - include: '#quoted'
