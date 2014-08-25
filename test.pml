@@ -1,65 +1,293 @@
-set normalize_ccp4_maps, off
-bg white
-fetch 1sug, closed, async=0
-fetch 1t49, open, async=0
+reinitialize
+load highpH_cryo.pdb
+load lowpH_cryo.pdb
+load lowpH_rt.pdb
+load highpH_rt.pdb
+alignto highpH_cryo and chain B+D
 
-set volume_layers, 125
-set ray_volume, 1
-color orange, closed
-color cyan, open
-util.cnc 
+set volume_layers, 2000
+#set ray_volume, 1
+set ribbon_sampling, 10
+set stick_radius, 0.15
+set bg_rgb, white
+set ray_opaque_background, 0
+cmd.volume_ramp_new('ramp_green', [    0.01, 0.00, 1.00, 0.00, 0.00,     4.01, 0.00, 1.00, 0.00, 0.10,     4.99, 0.00, 1.00, 0.00, 0.50,     ])
+cmd.volume_ramp_new('ramp_magenta', [    0.01, 1.00, 0.00, 1.00, 0.00,     4.01, 1.00, 0.00, 1.00, 0.10,     4.99, 1.00, 0.00, 1.00, 0.50,     ])
+cmd.volume_ramp_new('ramp_blue', [    0.01, 0.00, 0.00, 1.00, 0.00,     4.01, 0.00, 0.00, 1.00, 0.10,     4.99, 0.00, 0.00, 1.00, 0.50,     ])
+load channel_2.pdb
+load highpH_cryo_2mFo-DFc.ccp4
+matrix_copy highpH_cryo, highpH_cryo_2mFo-DFc
+disable all
+load lowpH_cryo_2mFo-DFc.ccp4
+matrix_copy lowpH_cryo, lowpH_cryo_2mFo-DFc
+disable all
+load lowpH_rt_2mFo-DFc.ccp4
+matrix_copy lowpH_rt, lowpH_rt_2mFo-DFc
+disable all
+load highpH_rt_2mFo-DFc.ccp4
+matrix_copy highpH_rt, highpH_rt_2mFo-DFc
+disable all
 
-align (open and !resi 179-187), (closed and !resi 179-187) 
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
 
-hide everything 
+enable highpH_cryo
+hide everything, highpH_cryo
+show cartoon,  highpH_cryo
+color grey70, highpH_cryo
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
 
-select closed_loop, (resi 178-187 and closed)
-select open_loop, (resi 178-187 and open)
-show car, *_loop
-show lines, (sc. or n. CA) and *_loop
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain A
 
-fetch 1sug, closed_map_2fofc, type=2fofc, async=0
-fetch 1t49, open_map_2fofc, type=2fofc, async=0
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
 
-matrix_copy open, open_map_2fofc
-set_view (\
-     0.201828912,   -0.394193202,    0.896591187,\
-     0.625577271,    0.756249785,    0.191670060,\
-    -0.753602624,    0.522201478,    0.399232179,\
-    -0.000025043,   -0.000015736,  -54.631645203,\
-    35.736160278,   24.565471649,   12.465141296,\
-    20.505392075,   88.758811951,  -20.000000000 )
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
 
-volume open_vol, open_map_2fofc, selection=*_loop, carve=1.0
-volume closed_vol, closed_map_2fofc, selection=*_loop, carve=1.0
-cmd.volume_ramp_new('closed_ramp', [\
-     0.90, 1.00, 0.50, 0.00, 0.00, \
-     1.00, 1.00, 0.50, 0.00, 0.40, \
-     1.10, 1.00, 0.50, 0.00, 0.00, \
-     ])
-volume_color closed_vol, closed_ramp
+#volume highpH_cryo_vol_magenta, highpH_cryo_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color highpH_cryo_vol_magenta, ramp_magenta
 
-cmd.volume_ramp_new('open_ramp', [\
-     0.90, 0.00, 1.00, 1.00, 0.00, \
-     1.00, 0.00, 1.00, 1.00, 0.40, \
-     1.10, 0.00, 1.00, 1.00, 0.00, \
-     ])
-volume_color open_vol, open_ramp 
+ray
+png highpH_cryo_magenta_JUSTSTRU_20140824.png
 
-cmd.volume_ramp_new('closed_ramp2', [\
-     0.01, 1.00, 0.50, 0.00, 0.00, \
-     1.25, 1.00, 0.50, 0.00, 0.20, \
-     2.50, 1.00, 0.50, 0.00, 0.30, \
-     3.00, 1.00, 0.50, 0.00, 0.05, \
-    10.00, 1.00, 0.50, 0.00, 0.00, \
-     ])
-volume_color closed_vol, closed_ramp2
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
 
-cmd.volume_ramp_new('open_ramp', [\
-     0.01, 0.00, 1.00, 1.00, 0.00, \
-     1.25, 0.00, 1.00, 1.00, 0.20, \
-     2.50, 0.00, 1.00, 1.00, 0.30, \
-     3.00, 0.00, 1.00, 1.00, 0.05, \
-    10.00, 0.00, 1.00, 1.00, 0.00, \
-     ])
-volume_color open_vol, open_ramp 
+enable lowpH_cryo
+hide everything, lowpH_cryo
+show cartoon,  lowpH_cryo
+color grey70, lowpH_cryo
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain B
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume lowpH_cryo_vol_magenta, lowpH_cryo_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color lowpH_cryo_vol_magenta, ramp_magenta
+
+ray
+png lowpH_cryo_magenta_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable lowpH_rt
+hide everything, lowpH_rt
+show cartoon,  lowpH_rt
+color grey70, lowpH_rt
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain D
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume lowpH_rt_vol_magenta, lowpH_rt_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color lowpH_rt_vol_magenta, ramp_magenta
+
+ray
+png lowpH_rt_magenta_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable highpH_rt
+hide everything, highpH_rt
+show cartoon,  highpH_rt
+color grey70, highpH_rt
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain A
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume highpH_rt_vol_magenta, highpH_rt_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color highpH_rt_vol_magenta, ramp_magenta
+
+ray
+png highpH_rt_magenta_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable highpH_cryo
+hide everything, highpH_cryo
+show cartoon,  highpH_cryo
+color grey70, highpH_cryo
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain A
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume highpH_cryo_vol_green, highpH_cryo_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color highpH_cryo_vol_green, ramp_green
+
+ray
+png highpH_cryo_green_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable lowpH_cryo
+hide everything, lowpH_cryo
+show cartoon,  lowpH_cryo
+color grey70, lowpH_cryo
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain B
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume lowpH_cryo_vol_green, lowpH_cryo_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color lowpH_cryo_vol_green, ramp_green
+
+ray
+png lowpH_cryo_green_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable lowpH_rt
+hide everything, lowpH_rt
+show cartoon,  lowpH_rt
+color grey70, lowpH_rt
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain D
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume lowpH_rt_vol_green, lowpH_rt_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color lowpH_rt_vol_green, ramp_green
+
+ray
+png lowpH_rt_green_JUSTSTRU_20140824.png
+
+disable all
+set_view (-0.456564099,   -0.092519455,    0.884874821,	0.889528990,   -0.027698873,    0.456087917,-0.017682521,    0.995325387,    0.094962828,	0.000069036,    0.000050362,  -53.305934906,	2.346937418,    1.179337502,    3.110260248,39.645729065,   67.022422791,   20.000000000 )
+
+enable highpH_rt
+hide everything, highpH_rt
+show cartoon,  highpH_rt
+color grey70, highpH_rt
+set cartoon_oval_width, 0.2
+set cartoon_oval_length, 0.7
+alter A/24:46/, ss='H'
+alter B/24:46/, ss='H'
+alter C/24:46/, ss='H'
+alter D/24:46/, ss='H'
+
+show sticks, resi 31+27+37
+show sticks, resi 27+31+30+34 and name C+O
+hide everything, name H*
+hide everything, chain A
+
+hide sticks, alt B+C+D
+hide sticks, name N
+color red, name OG+O
+color blue, name ND1+NE2
+
+hide everything, ele h
+show sticks, ele h and neighbor (ele n+o)
+
+#volume highpH_rt_vol_green, highpH_rt_2mFo-DFc, selection=channel_2, carve=1.5
+#volume_color highpH_rt_vol_green, ramp_green
+
+ray
+png highpH_rt_green_JUSTSTRU_20140824.png
