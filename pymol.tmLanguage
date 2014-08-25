@@ -11,6 +11,10 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>include</key>
+			<string>#comments</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>^([a-zA-Z]+)\.([a-zA-Z_]+)(\()?</string>
 			<key>beginCaptures</key>
@@ -36,6 +40,10 @@
 					<key>include</key>
 					<string>#options</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -58,6 +66,10 @@
 				<dict>
 					<key>include</key>
 					<string>#selectors</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -112,6 +124,20 @@
 				</dict>
 			</array>
 		</dict>
+		<key>comments</key>
+		<dict>
+			<key>comment</key>
+			<string>comments</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(\#)(.*)($)</string>
+					<key>name</key>
+					<string>comment.line.pymol</string>
+				</dict>
+			</array>
+		</dict>
 		<key>numbers</key>
 		<dict>
 			<key>comment</key>
@@ -158,6 +184,10 @@
 						<dict>
 							<key>include</key>
 							<string>#options</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
 						</dict>
 					</array>
 				</dict>
@@ -218,6 +248,10 @@
 					<string>meta.paren.pymol</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#comments</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#selectors</string>

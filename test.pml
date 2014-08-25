@@ -5,14 +5,13 @@ fetch 1t49, open, async=0
 
 set volume_layers, 125
 set ray_volume, 1
-
 color orange, closed
 color cyan, open
-util.cnc
+util.cnc 
 
-align (open and !resi 179-187), (closed and !resi 179-187)
+align (open and !resi 179-187), (closed and !resi 179-187) 
 
-hide everything
+hide everything 
 
 select closed_loop, (resi 178-187 and closed)
 select open_loop, (resi 178-187 and open)

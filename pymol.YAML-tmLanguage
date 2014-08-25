@@ -8,6 +8,7 @@ uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
 
 patterns:
 
+- include: '#comments'
 
 - name: meta.cmd.pymol
   begin: ^([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
@@ -17,6 +18,7 @@ patterns:
   end: (\)|$)
   patterns:
     - include: '#options'
+    - include: '#comments'
 
 - name: meta.standard.pymol
   begin: ^([a-zA-Z_]+)[ X]+
@@ -25,6 +27,7 @@ patterns:
   end: ($|,)
   patterns:
     - include: '#selectors'
+    - include: '#comments'
     - name: variable.other.target.pymol
       match: \b[A-Za-z0-9_]+?\b
 
@@ -49,6 +52,11 @@ repository:
       - name: constant.numeric.integer.pymol
         match: (\b|\-)[0-9]+\b
 
+  comments:
+    comment: comments
+    patterns:
+      - name: comment.line.pymol
+        match: (\#)(.*)($)
 
   quoted:
     comment: Quoted strings
@@ -76,9 +84,8 @@ repository:
         begin: \(
         end: \)
         patterns:
+          - include: '#comments'
           - include: '#selectors'
-
-
 
   options:
     comment: argument options
@@ -90,6 +97,7 @@ repository:
         end: \)
         patterns:
           - include: '#options'
+          - include: '#comments'
       - include: '#selectors'
 
 ...
