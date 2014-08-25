@@ -11,22 +11,14 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>include</key>
-			<string>#numbers</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#quoted</string>
-		</dict>
-		<dict>
 			<key>begin</key>
-			<string>^([a-zA-Z]+)\.([a-zA-Z_]+)\(</string>
+			<string>^([a-zA-Z]+)\.([a-zA-Z_]+)(\()?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.class.pymol</string>
+					<string>entity.other.inherited-class.pymol</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -35,7 +27,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\)</string>
+			<string>(\)|$)</string>
 			<key>name</key>
 			<string>meta.cmd.pymol</string>
 			<key>patterns</key>
@@ -76,14 +68,32 @@
 			</array>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>highlight equals signs.</string>
 			<key>match</key>
 			<string>(\=)</string>
 			<key>name</key>
-			<string>keyword.operator.pymol</string>
+			<string>support.function.pymol</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>highlight asterisks for globbing</string>
+			<key>match</key>
+			<string>(\*)</string>
+			<key>name</key>
+			<string>string.interpolated.pymol</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>#options</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#numbers</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#quoted</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -187,7 +197,7 @@
 					<key>match</key>
 					<string>(\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n)(\.|\b)</string>
 					<key>name</key>
-					<string>keyword.operator.pymol</string>
+					<string>keyword.other.pymol</string>
 				</dict>
 				<dict>
 					<key>match</key>

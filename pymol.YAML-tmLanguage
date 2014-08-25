@@ -7,16 +7,14 @@ uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
 
 
 patterns:
-- include: '#numbers'
-- include: '#quoted'
-# - include: '#command'
+
 
 - name: meta.cmd.pymol
-  begin: ^([a-zA-Z]+)\.([a-zA-Z_]+)\(
+  begin: ^([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
   beginCaptures:
-    '1': {name: support.class.pymol}
+    '1': {name: entity.other.inherited-class.pymol}
     '2': {name: entity.name.function.pymol}
-  end: \)
+  end: (\)|$)
   patterns:
     - include: '#options'
 
@@ -30,10 +28,16 @@ patterns:
     - name: variable.other.target.pymol
       match: \b[A-Za-z0-9_]+?\b
 
-# - include: source.python
-- name: keyword.operator.pymol
+- comment: highlight equals signs.
+  name: support.function.pymol
   match: (\=)
+
+- comment: highlight asterisks for globbing
+  name: string.interpolated.pymol
+  match: (\*)
 - include: '#options'
+- include: '#numbers'
+- include: '#quoted'
 
 
 repository:
@@ -63,7 +67,7 @@ repository:
   selectors:
     comment: selector arguments in pymol
     patterns:
-      - name: keyword.operator.pymol
+      - name: keyword.other.pymol
         match: (\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n)(\.|\b)
       - name: keyword.control.pymol
         match: \b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|extend)\b
@@ -86,7 +90,6 @@ repository:
         end: \)
         patterns:
           - include: '#options'
-
       - include: '#selectors'
 
 ...
