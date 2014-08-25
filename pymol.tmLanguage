@@ -72,6 +72,10 @@
 					<string>#comments</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#filenames</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>\b[A-Za-z0-9_]+?\b</string>
 					<key>name</key>
@@ -107,6 +111,10 @@
 			<key>include</key>
 			<string>#quoted</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#filenames</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -135,6 +143,20 @@
 					<string>(\#)(.*)($)</string>
 					<key>name</key>
 					<string>comment.line.pymol</string>
+				</dict>
+			</array>
+		</dict>
+		<key>filenames</key>
+		<dict>
+			<key>comment</key>
+			<string>Filenames for common pdb style files.</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b[A-Za-z0-9_-]+\.(callback|ccl|cex|cgo|ccp4|ent|map|mol|pdb|pse|sdf|xplor|xyz)\b</string>
+					<key>name</key>
+					<string>support.class.filename.pymol</string>
 				</dict>
 			</array>
 		</dict>
@@ -227,7 +249,7 @@
 					<key>match</key>
 					<string>(\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n)(\.|\b)</string>
 					<key>name</key>
-					<string>keyword.other.pymol</string>
+					<string>keyword.operator.pymol</string>
 				</dict>
 				<dict>
 					<key>match</key>
