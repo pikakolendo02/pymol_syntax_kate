@@ -85,7 +85,7 @@
 			<key>match</key>
 			<string>(\=)</string>
 			<key>name</key>
-			<string>support.function.pymol</string>
+			<string>keyword.control.set.pymol</string>
 		</dict>
 		<dict>
 			<key>include</key>
