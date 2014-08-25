@@ -48,7 +48,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^([a-zA-Z_]+)[ X]+</string>
+			<string>^([a-zA-Z_]+)([ X]+|$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>

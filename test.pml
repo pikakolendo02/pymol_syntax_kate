@@ -22,7 +22,6 @@ fetch 1sug, closed_map_2fofc, type=2fofc, async=0
 fetch 1t49, open_map_2fofc, type=2fofc, async=0
 
 matrix_copy open, open_map_2fofc
-
 set_view (\
      0.201828912,   -0.394193202,    0.896591187,\
      0.625577271,    0.756249785,    0.191670060,\
