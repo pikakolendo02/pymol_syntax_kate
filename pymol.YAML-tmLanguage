@@ -11,19 +11,19 @@ patterns:
 - include: '#comments'
 
 - name: meta.cmd.pymol
-  begin: ^([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
+  begin: ^([ X]*)([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
   beginCaptures:
-    '1': {name: entity.other.inherited-class.pymol}
-    '2': {name: entity.name.function.pymol}
+    '2': {name: entity.other.inherited-class.pymol}
+    '3': {name: entity.name.function.pymol}
   end: (\)|$)
   patterns:
     - include: '#options'
     - include: '#comments'
 
 - name: meta.standard.pymol
-  begin: ^([a-zA-Z_]+)([ X]+|$)
+  begin: ^([ X]*)([a-zA-Z_]+)([ X]+|$)
   beginCaptures:
-    '1': {name: entity.name.function.pymol}
+    '2': {name: entity.name.function.pymol}
   end: ($|,)
   patterns:
     - include: '#selectors'
