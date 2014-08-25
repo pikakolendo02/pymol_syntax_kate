@@ -15,6 +15,10 @@
 			<string>#comments</string>
 		</dict>
 		<dict>
+			<key>include</key>
+			<string>#filenames</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>^([ X]*)([a-zA-Z]+)\.([a-zA-Z_]+)(\()?</string>
 			<key>beginCaptures</key>
@@ -65,15 +69,15 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#filenames</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#selectors</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#filenames</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -92,14 +96,6 @@
 			<string>support.function.pymol</string>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>highlight asterisks for globbing</string>
-			<key>match</key>
-			<string>(\*)</string>
-			<key>name</key>
-			<string>string.interpolated.pymol</string>
-		</dict>
-		<dict>
 			<key>include</key>
 			<string>#options</string>
 		</dict>
@@ -112,8 +108,12 @@
 			<string>#quoted</string>
 		</dict>
 		<dict>
-			<key>include</key>
-			<string>#filenames</string>
+			<key>comment</key>
+			<string>highlight asterisks for globbing</string>
+			<key>match</key>
+			<string>(\*)</string>
+			<key>name</key>
+			<string>string.interpolated.pymol</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -154,7 +154,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b[A-Za-z0-9_-]+\.(callback|ccl|cex|cgo|ccp4|ent|map|mol|pdb|pse|sdf|xplor|xyz)\b</string>
+					<string>([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mrc|o|omap|pdb|pml|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b</string>
 					<key>name</key>
 					<string>support.class.filename.pymol</string>
 				</dict>

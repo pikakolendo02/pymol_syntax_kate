@@ -9,6 +9,7 @@ uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
 patterns:
 
 - include: '#comments'
+- include: '#filenames'
 
 - name: meta.cmd.pymol
   begin: ^([ X]*)([a-zA-Z]+)\.([a-zA-Z_]+)(\()?
@@ -26,9 +27,9 @@ patterns:
     '2': {name: entity.name.function.pymol}
   end: ($|,)
   patterns:
+    - include: '#filenames'
     - include: '#selectors'
     - include: '#comments'
-    - include: '#filenames'
     - name: variable.other.target.pymol
       match: \b[A-Za-z0-9_]+?\b
 
@@ -36,13 +37,12 @@ patterns:
   name: support.function.pymol
   match: (\=)
 
-- comment: highlight asterisks for globbing
-  name: string.interpolated.pymol
-  match: (\*)
 - include: '#options'
 - include: '#numbers'
 - include: '#quoted'
-- include: '#filenames'
+- comment: highlight asterisks for globbing
+  name: string.interpolated.pymol
+  match: (\*)
 
 
 repository:
@@ -93,7 +93,7 @@ repository:
     comment: Filenames for common pdb style files.
     patterns: 
       - name:  support.class.filename.pymol
-        match: \b[A-Za-z0-9_-]+\.(callback|ccl|cex|cgo|ccp4|ent|map|mol|pdb|pse|sdf|xplor|xyz)\b
+        match: ([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mrc|o|omap|pdb|pml|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b
 
   options:
     comment: argument options
