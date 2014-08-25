@@ -80,8 +80,8 @@ repository:
   selectors:
     comment: selector arguments in pymol
     patterns:
-      - name: keyword.operator.selector.pymol
-        match: (\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n|ele)(\.|\b)
+      - name: support.function.selector.pymol
+        match: (\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)
       - name: keyword.control.pymol
         match: \b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|extend)\b
       - include: '#numbers'
@@ -114,6 +114,7 @@ repository:
   target:
     comment: everything but the command in the target phrase
     patterns:
+      - include: '#numbers'
       - include: '#comments'
       - include: '#filenames'
       - include: '#selectors'

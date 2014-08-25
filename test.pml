@@ -52,7 +52,7 @@ hide everything, name H*
 hide everything, chain A
 
 hide sticks, alt B+C+D
-hide sticks, name N
+hide sticks, name CA
 color red, name OG+O
 color blue, name ND1+NE2
 

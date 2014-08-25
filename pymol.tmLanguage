@@ -247,9 +247,9 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(\b|\!)(resi|resn|name|alt|chain|segi|flag|sc|n|ele)(\.|\b)</string>
+					<string>(\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)</string>
 					<key>name</key>
-					<string>keyword.operator.selector.pymol</string>
+					<string>support.function.selector.pymol</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -288,6 +288,10 @@
 			<string>everything but the command in the target phrase</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#numbers</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#comments</string>
