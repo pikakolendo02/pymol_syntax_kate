@@ -1,5 +1,5 @@
 reinitialize
-load highpH_cryo.pdb
+load highpH_cryo.map
 load lowpH_cryo.pdb
 load lowpH_rt.pdb
 load highpH_rt.pdb
@@ -11,7 +11,11 @@ set ribbon_sampling, 10
 set stick_radius, 0.15
 set bg_rgb, white
 set ray_opaque_background, 0
-cmd.volume_ramp_new('ramp_green', [    0.01, 0.00, 1.00, 0.00, 0.00,     4.01, 0.00, 1.00, 0.00, 0.10,     4.99, 0.00, 1.00, 0.00, 0.50,     ])
+cmd.volume_ramp_new('ramp_green', [    0.01, 0.00, 1.00, \
+    0.00, 0.00, 4.01, \
+    0.00, 1.00, 0.00, \
+    0.10, 4.99, 0.00, \
+    1.00, 0.00, 0.50])
 cmd.volume_ramp_new('ramp_magenta', [    0.01, 1.00, 0.00, 1.00, 0.00,     4.01, 1.00, 0.00, 1.00, 0.10,     4.99, 1.00, 0.00, 1.00, 0.50,     ])
 cmd.volume_ramp_new('ramp_blue', [    0.01, 0.00, 0.00, 1.00, 0.00,     4.01, 0.00, 0.00, 1.00, 0.10,     4.99, 0.00, 0.00, 1.00, 0.50,     ])
 load channel_2.pdb
