@@ -4,7 +4,6 @@ load lowpH_cryo.pdb
 load lowpH_rt.pdb
 load highpH_rt.pdb
 alignto highpH_cryo and chain B+D
-
 set volume_layers, 2000
 #set ray_volume, 1
 set ribbon_sampling, 10
@@ -233,7 +232,6 @@ show sticks, ele h and neighbor (ele n+o)
 
 #volume lowpH_cryo_vol_green, lowpH_cryo_2mFo-DFc, selection=channel_2, carve=1.5
 #volume_color lowpH_cryo_vol_green, ramp_green
-
 ray
 png lowpH_cryo_green_JUSTSTRU_20140824.png
 

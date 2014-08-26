@@ -20,8 +20,8 @@ patterns:
     - include: '#selectors'
 
 - name: meta.python.pymol
-  begin: ^python
-  end: ^python end
+  begin: ^(\s)*python
+  end: ^(\s)*python end
   patterns:
     - include: 'source.python'
 

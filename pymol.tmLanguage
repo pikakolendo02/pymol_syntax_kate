@@ -47,9 +47,9 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^python</string>
+			<string>^(\s)*python</string>
 			<key>end</key>
-			<string>^python end</string>
+			<string>^(\s)*python end</string>
 			<key>name</key>
 			<string>meta.python.pymol</string>
 			<key>patterns</key>
