@@ -47,6 +47,21 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>^python</string>
+			<key>end</key>
+			<string>^python end</string>
+			<key>name</key>
+			<string>meta.python.pymol</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.python</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>^(\s)*([a-zA-Z]+)\.</string>
 			<key>beginCaptures</key>
 			<dict>
@@ -112,6 +127,10 @@
 		<dict>
 			<key>include</key>
 			<string>#filenames</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#selectors</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -263,7 +282,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend)\b</string>
+					<string>\b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend|from|import)\b</string>
 					<key>name</key>
 					<string>keyword.control.pymol</string>
 				</dict>

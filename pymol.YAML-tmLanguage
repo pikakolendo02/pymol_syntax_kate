@@ -19,6 +19,12 @@ patterns:
     - include: '#comments'
     - include: '#selectors'
 
+- name: meta.python.pymol
+  begin: ^python
+  end: ^python end
+  patterns:
+    - include: 'source.python'
+
 - name: meta.cmd.pymol
   begin: ^(\s)*([a-zA-Z]+)\.
   beginCaptures:
@@ -43,6 +49,7 @@ patterns:
 - include: '#options'
 - include: '#command'
 - include: '#filenames'
+- include: '#selectors'
 - comment: highlight asterisks for globbing
   name: string.interpolated.pymol
   match: (\*)
@@ -83,7 +90,7 @@ repository:
       - name: support.function.selector.pymol
         match: (\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)(\b|\s|[:punct:])
       - name: keyword.control.pymol
-        match: \b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend)\b
+        match: \b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend|from|import)\b
       - include: '#numbers'
       - name: meta.paren.pymol
         begin: \(
