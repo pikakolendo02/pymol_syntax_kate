@@ -7,7 +7,8 @@ uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
 
 
 patterns:
-
+- include: '#numbers'
+- include: '#quoted'
 - include: '#comments'
 
 - name: meta.paren.pymol
@@ -19,17 +20,19 @@ patterns:
     - include: '#selectors'
 
 - name: meta.cmd.pymol
-  begin: ^([ X]*)([a-zA-Z]+)\.
+  begin: ^(\s)*([a-zA-Z]+)\.
   beginCaptures:
     '2': {name: entity.other.inherited-class.pymol}
-  end: ($|\(|,)
+  end: ($|\()
   patterns:
     - include: '#command'
 
 - name: meta.standard.pymol
-  begin: ^([ X]*)
-  end: ($|\(|,)
+  begin: ^(\s)*
+  end: ($|,)
   patterns:
+    - name: meta.empty.pymol
+      match: $
     - include: '#command'
     - include: '#target'
 
@@ -37,11 +40,9 @@ patterns:
   name: keyword.control.set.pymol
   match: (\=)
 
+- include: '#options'
 - include: '#command'
 - include: '#filenames'
-- include: '#options'
-- include: '#numbers'
-- include: '#quoted'
 - comment: highlight asterisks for globbing
   name: string.interpolated.pymol
   match: (\*)
@@ -80,7 +81,7 @@ repository:
     comment: selector arguments in pymol
     patterns:
       - name: support.function.selector.pymol
-        match: (\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)
+        match: (\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)(\b|\s|[:punct:])
       - name: keyword.control.pymol
         match: \b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend)\b
       - include: '#numbers'
@@ -88,6 +89,7 @@ repository:
         begin: \(
         end: \)
         patterns:
+          - include: '#quoted'
           - include: '#comments'
           - include: '#selectors'
 
@@ -95,7 +97,7 @@ repository:
     comment: Filenames for common pdb style files.
     patterns: 
       - name:  support.class.filename.pymol
-        match: ([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mov|mrc|o|omap|pdb|pml|png|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b
+        match: (\s)*([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mov|mrc|o|omap|pdb|pml|png|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b
 
   options:
     comment: argument options
@@ -106,6 +108,7 @@ repository:
         begin: \(
         end: \)
         patterns:
+          - include: '#quoted'
           - include: '#options'
           - include: '#comments'
       - include: '#selectors'
@@ -113,6 +116,7 @@ repository:
   target:
     comment: everything but the command in the target phrase
     patterns:
+      - include: '#quoted'
       - include: '#numbers'
       - include: '#comments'
       - include: '#filenames'

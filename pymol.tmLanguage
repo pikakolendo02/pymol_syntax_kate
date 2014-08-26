@@ -12,6 +12,14 @@
 	<array>
 		<dict>
 			<key>include</key>
+			<string>#numbers</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#quoted</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#comments</string>
 		</dict>
 		<dict>
@@ -39,7 +47,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^([ X]*)([a-zA-Z]+)\.</string>
+			<string>^(\s)*([a-zA-Z]+)\.</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>2</key>
@@ -49,7 +57,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>($|\(|,)</string>
+			<string>($|\()</string>
 			<key>name</key>
 			<string>meta.cmd.pymol</string>
 			<key>patterns</key>
@@ -62,13 +70,19 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^([ X]*)</string>
+			<string>^(\s)*</string>
 			<key>end</key>
-			<string>($|\(|,)</string>
+			<string>($|,)</string>
 			<key>name</key>
 			<string>meta.standard.pymol</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>$</string>
+					<key>name</key>
+					<string>meta.empty.pymol</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#command</string>
@@ -89,23 +103,15 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#options</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#command</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>#filenames</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#options</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#numbers</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#quoted</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -154,7 +160,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mov|mrc|o|omap|pdb|pml|png|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b</string>
+					<string>(\s)*([*A-Za-z0-9_\-/]*)\.(brix|callback|ccl|cex|cgo|ccp4|ent|map|mol2?|mmod|mov|mrc|o|omap|pdb|pml|png|pqr|pse|r3d|sdf|top|trj|xplor|xyz)(\.gz)?\b</string>
 					<key>name</key>
 					<string>support.class.filename.pymol</string>
 				</dict>
@@ -205,6 +211,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#quoted</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#options</string>
 						</dict>
 						<dict>
@@ -247,7 +257,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)</string>
+					<string>(\b|\!)(backbone|bb\.|sidechain|resi|resn|name|alt|chain|segi|flag|sc\.|n\.|ele)(\b|\s|[:punct:])</string>
 					<key>name</key>
 					<string>support.function.selector.pymol</string>
 				</dict>
@@ -272,6 +282,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#quoted</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#comments</string>
 						</dict>
 						<dict>
@@ -288,6 +302,10 @@
 			<string>everything but the command in the target phrase</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#quoted</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#numbers</string>
