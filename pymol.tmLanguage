@@ -253,7 +253,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|extend)\b</string>
+					<string>\b(and|or|not|in|gap|aroundwithin|of|byres|bymolecule|byfragment|bysegment|byobject|bycellneighbor|neighbor|extend)\b</string>
 					<key>name</key>
 					<string>keyword.control.pymol</string>
 				</dict>
