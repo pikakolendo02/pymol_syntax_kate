@@ -12,7 +12,7 @@ This preview is using the spacegray theme and color scheme.
 
 ## Use:
 ### Package Control:
-Install the package named "Pymol Language" and it should work automatically on `.pml` files.
+Install the package named [Pymol Language](https://sublime.wbond.net/packages/Pymol%20Language) and it should work automatically on `.pml` files.
 
 ### Manual:
 Copy the `pymol.tmlanguage` file into the user packages folder. On Mac, for sublime text 3, this folder is `~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/pymol.tmLanguage`. After this, it should immediately be applied to all `.pml` files.
