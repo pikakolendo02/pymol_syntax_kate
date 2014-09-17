@@ -100,6 +100,7 @@ repository:
         begin: \(
         end: \)
         patterns:
+          - include: '#constant_placeholder'
           - include: '#quoted'
           - include: '#comments'
           - include: '#selectors'

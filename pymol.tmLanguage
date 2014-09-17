@@ -329,6 +329,10 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#constant_placeholder</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#quoted</string>
 						</dict>
 						<dict>
