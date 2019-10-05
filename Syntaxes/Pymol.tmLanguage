@@ -7,7 +7,7 @@
 		<string>pml</string>
 	</array>
 	<key>name</key>
-	<string>Pymol</string>
+	<string>PyMOL</string>
 	<key>patterns</key>
 	<array>
 		<dict>
