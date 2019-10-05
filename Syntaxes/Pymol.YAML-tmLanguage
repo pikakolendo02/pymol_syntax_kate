@@ -1,6 +1,6 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 ---
-name: Pymol
+name: PyMOL
 fileTypes: [pml]
 scopeName: source.pymol
 uuid: 0979e947-4369-47bf-9cc6-b158d514b6a9
