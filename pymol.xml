@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="PyMOL" version="2" section="Scripts" extensions="*.pml" mimetype="text/x-pymol" kateversion="5.0" casesensitive="1" author="Generated">
+
+  <highlighting>
+    <!-- 改进的选择器匹配（使用正则表达式） -->
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <!-- 注释 -->
+        <RegExpr attribute="Comment" String="#.*$" context="#stay"/>
+        
+        <!-- 字符串 -->
+        <StringDetect attribute="String" String="&quot;" context="String"/>
+        <StringDetect attribute="String" String="'" context="String"/>
+        
+        <!-- 改进的命令匹配 -->
+        <RegExpr attribute="Command" String="\b(abort|alias|align|alignto|alter|alter_state|as|attach|backward|bg|bg_col|bg_color|bond|button|cache|capture|car|cbap|cbc|cd|center|clip|cls|cnc|color|commands|config_mouse|copy|count_atoms|count_frames|count_states|create|cycle_valence|delete|deprotect|deselect|disable|distance|draw|dss|edit|edit_keys|enable|ending|exit|extend|fab|feedback|fetch|fit|flag|fork|forward|fragment|frame|full_screen|fuse|get|get_angle|get_area|get_chains|get_color_indices|get_dihedral|get_distance|get_extent|get_model|get_names|get_names_of_type|get_object_matrix|get_pdbstr|get_position|get_session|get_symmetry|get_title|get_type|get_version|get_view|gradient|group|h_add|h_fill|hide|id_atom|identify|index|indicate|intra_fit|intra_rms|intra_rms_cur|invert|isodot|isolevel|isomesh|isosurface|iterate|iterate_state|label|lines|load|load_model|load_traj|ls|main_page|map_double|map_new|map_set|map_set_border|map_trim|mappend|mask|matrix_copy|mclear|mdo|mdump|mem|meter_reset|middle|mmatrix|morph|move|mplay|mpng|mset|mstop|order|orient|origin|pair_fit|png|protect|pseudoatom|push_undo|pwd|python|quit|ramp_new|ray|read_molstr|read_pdbstr|rebuild|recolor|redo|refresh|reinit|reinitialize|remove|remove_picked|rename|replace|reset|rewind|rigimol.morph|rms|rms_cur|rock|rotate|run|save|sele|select|set|set_bond|set_color|set_colour|set_dihedral|set_geometry|set_key|set_name|set_symmetry|set_title|set_view|show|show_as|slice|slice_new|smooth|sort|space|spectrum|splash|split_states|ss|super|symexp|sync|system|torsion|translate|turn|unbond|undo|unmask|unpick|unset|update|view|viewport|volume|volume_color|volume_ramp_new|window|wizard|zoom)\b" context="#stay"/>
+        
+        <!-- 带点的选择器（如bb.） -->
+        <RegExpr attribute="Selector" String="\b(bb\.|sc\.|n\.)\b" context="#stay"/>
+        
+        <!-- 数字 -->
+        <RegExpr attribute="Number" String="\b\d+(?:\.\d+)?\b" context="#stay"/>
+        
+        <!-- 运算符 -->
+        <RegExpr attribute="Operator" String="(=|\+|-|\*|/|==)" context="#stay"/>
+        
+        <!-- 文件名 -->
+        <RegExpr attribute="Filename" String="\b\w+\.(pdb|mol2|cif|ent|map)\b" context="#stay"/>
+        
+        <!-- Python块 -->
+        <RegExpr attribute="Python Block" String="^\s*python\b" context="PythonBlock"/>
+      </context>
+
+      <context name="String" attribute="String" lineEndContext="#pop">
+        <DetectChar attribute="String" char="&quot;" context="#pop"/>
+        <DetectChar attribute="String" char="'" context="#pop"/>
+        <IncludeRules context="StringContent"/>
+      </context>
+
+      <context name="StringContent" attribute="String" lineEndContext="#stay">
+        <RegExpr attribute="Escape" String="\\[\\'&quot;]" context="#stay"/>
+      </context>
+
+      <context name="PythonBlock" attribute="Python Block" lineEndContext="#pop">
+        <RegExpr attribute="Python Block" String="^\s*python\s+end\b" context="#pop"/>
+        <IncludeRules context="source.python"/>
+      </context>
+    </contexts>
+
+    <!-- 样式定义 -->
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Escape" defStyleNum="dsSpecialChar"/>
+      <itemData name="Command" defStyleNum="dsKeyword"/>
+      <itemData name="Selector" defStyleNum="dsDataType"/>
+      <itemData name="Number" defStyleNum="dsDecVal"/>
+      <itemData name="Operator" defStyleNum="dsOperator"/>
+      <itemData name="Filename" defStyleNum="dsString"/>
+      <itemData name="Python Block" defStyleNum="dsOthers"/>
+    </itemDatas>
+  </highlighting>
+
+  <general>
+    <comments>
+      <comment name="singleLine" start="#" position="afterwhitespace"/>
+    </comments>
+    <folding indentationsensitive="1"/>
+  </general>
+</language>
