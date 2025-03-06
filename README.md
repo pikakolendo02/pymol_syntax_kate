@@ -11,6 +11,10 @@ This works both with the more standard `command target, options` syntax and the 
 This preview is using the spacegray theme and color scheme.
 
 ## Use:
+
+### KDE Kate Editor:
+Copy the `pymol.xml` into `~/.local/share/org.kde.syntax-highlighting/syntax/`.
+
 ### Package Control:
 Install the package named [Pymol Language](https://sublime.wbond.net/packages/Pymol%20Language) and it should work automatically on `.pml` files.
 
